@@ -21,13 +21,15 @@ function Item({
   wishlistData,
   sendToast,
   productId,
-  show
+  show,
+  cartData
 }) {
   const { isAuth, setLModal } = useContext(productsContext);
   const navigate = useNavigate();
   const [wishlist, setWishlist] = useState(false);
   const [spinnerLoading, setSpinnerLoading] = useState(false);
   const [dateAgo, setDateAgo] = useState(0);
+  const [isAdded, setIsAdded] = useState(false)
 
   useEffect(() => {
     if (show) return // for the preview in sell product section
@@ -37,6 +39,13 @@ function Item({
       setWishlist(true);
     } else {
       setWishlist(false);
+    }
+
+    const isExistsCart = cartData?.find((item) => item.product._id === id);
+    if (isExistsCart) {
+      setIsAdded(true);
+    } else {
+      setIsAdded(false);
     }
     const nowDate = new Date();
     const nowDateis = new Date(nowDate.toISOString().split("T")[0]);
@@ -72,7 +81,25 @@ function Item({
       setSpinnerLoading(false);
     }
   }
+  async function toggleCart() {
+    if (isAdded) {
+      sendToast("Already in cart", false);
+    }
+    else {
+      await axios
+        .post(
+          `${apiURL}/api/addToCart`,
+          { productId: id, count: 1 },
+          { withCredentials: true }
+        )
+        .then((res) => {
+          sendToast(`${name} ${res.data}`, true);
+        });
 
+    }
+
+
+  }
   return (
     <>
       <div className="item-container">
@@ -127,6 +154,15 @@ function Item({
             }}
           >
             View details
+          </button>
+          <button
+            className="item-view-now-btn"
+            onClick={() => {
+              if (show) return
+              { isAuth ? toggleCart() : setLModal(true) }
+            }}
+          >
+            {isAdded ? <>In Cart</> : <>Add to cart</>}
           </button>
           <img
             className="item-user-profile"

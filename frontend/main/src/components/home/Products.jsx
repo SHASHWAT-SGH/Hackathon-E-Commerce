@@ -17,6 +17,7 @@ function Products() {
   const [modal, setModal] = useState(false);
   const [wishlistData, setWishlistData] = useState();
   const [fetching, setFetching] = useState(false);
+  const [cartData, setCartData] = useState()
 
   useEffect(() => {
     axios
@@ -31,31 +32,36 @@ function Products() {
         setWishlistData(data.data.products);
         setFetching(true);
       });
+    axios
+      .get(`${apiURL}/api/getCart`, { withCredentials: true })
+      .then((data) => {
+        setCartData(data.data.products);
+      })
   }, []);
 
   const sendToast = (name, type) => {
     type
       ? toast.success(`${name}`, {
-          position: "top-right",
-          autoClose: 2500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        })
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      })
       : toast.error(`${name}`, {
-          icon: <DeleteFilled style={{ color: "#c91d23" }} />,
-          position: "top-right",
-          autoClose: 2500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        icon: <DeleteFilled style={{ color: "#c91d23" }} />,
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
   };
 
   return (
@@ -95,6 +101,7 @@ function Products() {
                   wishlistData={wishlistData}
                   sendToast={sendToast}
                   productId={p._id}
+                  cartData={cartData}
                 />
               ))
             ) : (
