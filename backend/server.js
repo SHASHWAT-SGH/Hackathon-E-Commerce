@@ -33,7 +33,7 @@ app.use(cookieParser());
 // connection to database
 mongoose
   .connect(
-    "mongodb+srv://mongodbPractice:QU12xqT2OLjqa5BB@cluster0.8sxvwko.mongodb.net/ecommerce?retryWrites=true&w=majority"
+    "mongodb+srv://semanticgeeks:uovmzPhoBGJwCwWD@cluster0.vk3sidv.mongodb.net/?retryWrites=true&w=majority"
     // "mongodb://127.0.0.1:27017/ecommerce"
   )
   .then(() => {
@@ -76,7 +76,6 @@ app.use("/api/", unprotectedApiRoutes);
 app.use(passport.authenticate("session"));
 app.use(passport.session());
 app.use(passport.initialize());
-
 
 // get request to check if user is authenticated
 app.use("/api/checkAuth", (req, res) => {
