@@ -57,6 +57,18 @@
     padding: 1rem;
     color:white;
     background-color: black;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.product-button:hover{
+    border: 0.1rem solid white;
+    border-radius: 1rem;
+    padding: 1rem;
+    color:white;
+    background-color: #ffffff47;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .product-back-btn {
@@ -83,6 +95,11 @@
     padding: calc(2*var(--product-page-font-size));
     padding-top: calc(1.2*var(--product-page-font-size));
     border-radius: 12px;
+}
+
+.product-buy-buttons{
+    padding: calc(2*var(--product-page-font-size));
+    padding-top: calc(1.2*var(--product-page-font-size));
 }
 
 .product-title {
