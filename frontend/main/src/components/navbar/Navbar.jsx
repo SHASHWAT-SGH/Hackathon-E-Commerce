@@ -170,7 +170,7 @@ function Navbar() {
             fontSize: "1.5rem",
           }}
           className={`bottom-nav-container-mob-button`}
-          onClick={() => isAuth ?  navigate("/wishlist"):setLModal(true)}
+          onClick={() => isAuth ? navigate("/wishlist") : setLModal(true)}
         >
           {wishlist ? <HeartFilled /> : <HeartOutlined />}
         </button>
@@ -218,13 +218,13 @@ function Navbar() {
 
           <div
             className={`pc-center-navbar-element${wishlist ? "-selected" : ""}`}
-            onClick={() => isAuth ? navigate("/wishlist"):setLModal(true) }
+            onClick={() => isAuth ? navigate("/wishlist") : setLModal(true)}
           >
             {wishlist ? <HeartFilled style={{ color: "#ffffff", fontSize: "1.4rem" }} /> : <HeartOutlined style={{ color: "#ffffff", fontSize: "1.4rem" }} />}
             <div className="pc-navbar-icon-text">wishlist</div>
           </div>
 
-          <div className="pc-center-navbar-element" onClick={handleUnderDev}>
+          <div className="pc-center-navbar-element" onClick={() => { navigate("/cart") }}>
             {
               <MessageOutlined
                 style={{ color: "#ffffff", fontSize: "1.4rem" }}
