@@ -51,7 +51,7 @@ function Item({
     const nowDateis = new Date(nowDate.toISOString().split("T")[0]);
     const thenDate = new Date(date.split("T")[0]);
     setDateAgo((nowDateis - thenDate) / (1000 * 60 * 60 * 24));
-  }, []);
+  }, [cartData]);
 
   async function toggleWishlist() {
     if (show) return
@@ -82,6 +82,7 @@ function Item({
     }
   }
   async function toggleCart() {
+
     if (isAdded) {
       sendToast("Already in cart", false);
     }
@@ -92,8 +93,10 @@ function Item({
           { productId: id, count: 1 },
           { withCredentials: true }
         )
+
         .then((res) => {
           sendToast(`${name} ${res.data}`, true);
+          setIsAdded(true)
         });
 
     }

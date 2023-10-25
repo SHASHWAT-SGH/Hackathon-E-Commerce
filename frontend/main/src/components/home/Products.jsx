@@ -13,7 +13,6 @@ import { productsContext } from "../../contexts/productsContext";
 
 function Products() {
   const { productData, setProductData } = useContext(productsContext);
-
   const [modal, setModal] = useState(false);
   const [wishlistData, setWishlistData] = useState();
   const [fetching, setFetching] = useState(false);

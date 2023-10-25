@@ -62,9 +62,12 @@ function Checkout({ cartData }) {
                     <div style={{ fontSize: '1.5rem' }}>
                         Payable Amount :
                     </div>
-                    <div style={{ fontSize: '1.5rem' }}>
-                        {totalPrice}
+                    <div style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
+                        ₹{totalPrice}
                     </div>
+                </div>
+                <div className="order-button">
+                    <div>Order Now</div>
                 </div>
             </div>
         </div>
