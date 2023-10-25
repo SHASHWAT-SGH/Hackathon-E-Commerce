@@ -1,4 +1,5 @@
 const { Cart } = require("../../model/cart");
+const { Product } = require("../../model/products");
 const { Wishlist } = require("../../model/wishlist");
 
 
@@ -22,15 +23,10 @@ const getCart = (req, res, next) => {
 
     Cart.findOne({ uid: req.session.passport.user.id })
         .populate({
-            path: 'products',
-            match: { isArchive: false },
-            populate: {
-                path: 'postedBy',
-                model: 'User',
-                select: '-password -_id -accountId -provider'
-            },
+            path: 'products.product', // 'products' refers to the products array in CartSchema, and 'product' refers to the reference field in the product object.
+            model: Product, // Reference the Product model.
         }).exec().then(cart => {
-            if (!cart) res.send('cart not found')
+            if (!cart) res.send(cart)
             else { res.send(cart) }
         })
 }
@@ -48,7 +44,7 @@ const addToCart = async (req, res, next) => {
         if (existingProductIndex === -1) {
             cart.products.push({ product: productId, count });
         } else {
-            cart.products[existingProductIndex].count += count;
+            cart.products[existingProductIndex].count = count;
         }
 
         await cart.save();
@@ -62,46 +58,35 @@ const addToCart = async (req, res, next) => {
 
 
 // delete one from the Wishlist
-const deleteOneFromWishlist = (req, res, next) => {
-    Wishlist.findOne({ uid: req.session.passport.user.id })
-        .then(async wishlist => {
-            const itemIndex = wishlist.products.indexOf(req.query.productId)
-            if (itemIndex !== -1) {
-                wishlist.products.splice(itemIndex, 1)
-                wishlist.save()
-                res.send('deleted from the wishlist')
-            }
-            else {
-                res.send('is not in the wishlist')
-            }
-        })
-        .catch(error => {
-            res.send(error);
-        });
-}
+const deleteOneFromCart = async (req, res, next) => {
+    try {
+        const cart = await Cart.findOne({ uid: req.session.passport.user.id });
+        const productId = req.body.productId; 
+
+        const productIndex = cart.products.findIndex(product => product.product.equals(productId));
+
+        if (productIndex !== -1) {
+            cart.products.splice(productIndex, 1);
+            await cart.save();
+            res.send('Product removed from the cart');
+        } else {
+            res.send('Product is not in the cart');
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
 
 
 // delete all from the Wishlist
-const deleteAllFromWishlist = (req, res, next) => {
-    Wishlist.findOne({ uid: req.session.passport.user.id })
-        .then(async wishlist => {
-            wishlist.products = []
-            wishlist.save()
-            res.send('All items from the wishlist has been deleted successfully')
-
-
-            //this one not working because array contains instances here
-            //     if(wishlist.products!==){
-            //         wishlist.products = []
-            //         wishlist.save()
-            //         res.send('All items from the wishlist has been deleted successfully')
-            //     }else{
-            //         res.send('Wishlist already empty!')
-            //     }
-            // })
-            // .catch(error => {
-            //     res.send(error);
+const deleteAllFromCart = (req, res, next) => {
+    Cart.findOne({ uid: req.session.passport.user.id })
+        .then(async cart => {
+            cart.products = []
+            cart.save()
+            res.send('All items from the cart has been deleted successfully')
         });
 }
 
-module.exports = { check, getCart, addToCart, deleteOneFromWishlist, deleteAllFromWishlist, }
+module.exports = { check, getCart, addToCart, deleteOneFromCart, deleteAllFromCart, }
