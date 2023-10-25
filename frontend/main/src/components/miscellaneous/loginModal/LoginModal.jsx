@@ -5,7 +5,7 @@ import { CloseOutlined, LoginOutlined, } from '@ant-design/icons'
 
 const LoginModal = ({ modal, setModal }) => {
 
-  const [modalMode, setModalMode] = useState('login')
+  const [modalMode, setModalMode] = useState('login');
 
   const closeModal = () => {
     setModal(false)
