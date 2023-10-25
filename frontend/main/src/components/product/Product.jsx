@@ -118,7 +118,7 @@ function Product() {
                 Brand: <div>{data.brand}</div>
               </div>
             </div>
-            <div className="product-info-card" style={{ display: "flex", justifyContent: "space-between" }}>
+            <div className="product-buy-buttons" style={{ display: "flex", justifyContent: "space-between", width: '80%' }}>
               <div className="product-button">Add to Cart</div>
               <div className="product-button">Buy Now</div>
             </div>
