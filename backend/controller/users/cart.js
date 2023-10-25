@@ -41,7 +41,15 @@ const addToCart = async (req, res, next) => {
 
         const existingProductIndex = cart.products.findIndex(product => product.product.equals(productId));
 
-        if (existingProductIndex === -1) {
+        if(count===0){
+            const productIndex = cart.products.findIndex(product => product.product.equals(productId));
+            cart.products.splice(productIndex, 1);
+            await cart.save()
+            .then((result)=>  res.send('Product removed from the cart'))
+            .catch((err)=>res.send('Product is not the cart'))
+            return
+        }
+        else if (existingProductIndex === -1) {
             cart.products.push({ product: productId, count });
         } else {
             cart.products[existingProductIndex].count = count;
