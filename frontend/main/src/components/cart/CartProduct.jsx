@@ -14,8 +14,23 @@ function CartProduct({ cart, id, name, description, price, date, location, categ
         await axios.get(`${apiURL}/api/deleteOneFromCart?productId=${id}`, {
             withCredentials: true,
         })
-        // .then(res => console.log(res.data))
-        // .catch(err => console.log("not"))
+        setUpdateCart(!updateCart)
+
+    }
+
+    async function handleMoveToWishlist() {
+        await axios
+            .post(
+                `${apiURL}/api/addToWishlist`,
+                { productId: id },
+                { withCredentials: true }
+            )
+            .then(
+                await axios.get(`${apiURL}/api/deleteOneFromCart?productId=${id}`, {
+                    withCredentials: true,
+                })
+            )
+        setUpdateCart(!updateCart)
     }
 
 
@@ -50,30 +65,30 @@ function CartProduct({ cart, id, name, description, price, date, location, categ
             <div style={{ width: '30%' }}>
                 <img style={{ width: '100%', height: '15rem', borderTopLeftRadius: '2rem', borderBottomLeftRadius: '2rem' }} src={thumbnail} alt="" />
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', width: '70%', padding: '0.7rem' }}>
-                <div style={{ marginLeft: '2rem', width: '70%' }}>
-                    <div style={{ fontSize: 30, height: '30%', fontWeight: 'bold' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', width: '70%', padding: '0.5rem' }}>
+                <div style={{ marginLeft: '1rem', width: '70%' }}>
+                    <div style={{ fontSize: 30, height: '30%', fontWeight: 'bold', margin: '0.3rem' }}>
                         {name}
                     </div>
-                    <div style={{ height: '40%' }}>
+                    <div style={{ height: '25%', margin: '0.2rem' }}>
                         <div>Category : {category}</div>
                         <div>Posted : {date}</div>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', width: '80%' }}>
-                        <div className='product-button'>Move To Wishlist</div>
-                        <div className='product-button' onClick={handleDeleteCart}>Remove X</div>
+                        <div className='product-button' onClick={handleMoveToWishlist}>Move To Wishlist</div>
+                        <div className='product-button' onClick={handleDeleteCart}>Remove</div>
                     </div>
                 </div>
-                <div style={{ width: '30%', fontSize: '1.2rem' }}>
+                <div style={{ width: '30%', fontSize: '1.2rem', fontWeight: 'bold', margin: '0.3rem' }}>
                     <div>
                         Price:
                         ₹{price}
                     </div>
                     Quantity:
-                    <div style={{ display: 'flex', width: '70%', height: '2rem', margin: '1rem' }}>
-                        <div style={{ width: '33%', backgroundColor: 'grey', borderRadius: '2rem', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={handleCountMinus} >-</div>
-                        <div style={{ width: '33%', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>{currentQuantity}</div>
-                        <div style={{ width: '33%', backgroundColor: 'grey', borderRadius: '2rem', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={handleCountPlus}>+</div>
+                    <div className='quantity-counter-container'>
+                        <div className='quantity-counter-button' onClick={handleCountMinus} >-</div>
+                        <div className='quantity-counter-count'>{currentQuantity}</div>
+                        <div className='quantity-counter-button' onClick={handleCountPlus}>+</div>
                     </div>
                 </div>
             </div>

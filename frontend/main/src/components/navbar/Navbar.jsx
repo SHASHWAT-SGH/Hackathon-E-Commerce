@@ -188,11 +188,10 @@ function Navbar() {
             <ProfileDropdown position={"top"}>
               <img
                 style={{ width: "2.2rem", borderRadius: "100%" }}
-                src={`${
-                  userData
+                src={`${userData
                     ? userData
                     : `https://ui-avatars.com/api/?name=${userName}&background=e91e63&color=fff&rounded=true`
-                }`}
+                  }`}
                 alt=""
               />
             </ProfileDropdown>
@@ -245,21 +244,14 @@ function Navbar() {
             <div className="pc-navbar-icon-text">wishlist</div>
           </div>
 
-          <div
-            className="pc-center-navbar-element"
-            onClick={() => {
-              navigate("/cart");
-            }}
-          >
-            {cart ? (
-              <ShoppingFilled
-                style={{ color: "#ffffff", fontSize: "1.8rem" }}
-              />
-            ) : (
+          <div className="pc-center-navbar-element" onClick={() => isAuth ? navigate("/cart") : setLModal(true)}>
+            {cart ? <ShoppingFilled
+              style={{ color: "#ffffff", fontSize: "1.8rem" }}
+            /> :
               <ShoppingCartOutlined
                 style={{ color: "#ffffff", fontSize: "1.8rem" }}
               />
-            )}
+            }
             <div className="pc-navbar-icon-text">cart</div>
           </div>
         </div>
@@ -282,11 +274,10 @@ function Navbar() {
                   border: "2px solid",
                   transform: "scale(0.9)",
                 }}
-                src={`${
-                  userData
+                src={`${userData
                     ? userData
                     : `https://ui-avatars.com/api/?name=${userName}&background=e91e63&color=fff&rounded=true`
-                }`}
+                  }`}
                 alt=""
               />
             </ProfileDropdown>

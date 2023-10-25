@@ -11,3 +11,29 @@
     font-size: 2rem;
     margin-bottom: 1rem;
 }
+
+.order-button {
+    background-color: aquamarine;
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    border: 2px solid grey;
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.order-button:hover {
+    background-color: grey;
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    border: 2px solid grey;
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+}

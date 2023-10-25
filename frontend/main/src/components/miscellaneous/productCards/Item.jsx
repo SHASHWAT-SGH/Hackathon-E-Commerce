@@ -51,7 +51,7 @@ function Item({
     const nowDateis = new Date(nowDate.toISOString().split("T")[0]);
     const thenDate = new Date(date.split("T")[0]);
     setDateAgo((nowDateis - thenDate) / (1000 * 60 * 60 * 24));
-  }, []);
+  }, [cartData]);
 
   async function toggleWishlist() {
     if (show) return
@@ -69,6 +69,19 @@ function Item({
           sendToast(`${name} ${res.data}`, true);
           setSpinnerLoading(false);
         });
+      await axios
+        .post(
+          `${apiURL}/api/mostViewedCategories`,
+          { productId: id, route: "wishlist" },
+          { withCredentials: true }
+        )
+      await axios
+        .post(
+          `${apiURL}/api/mostViewedProduct`,
+          { productId: id },
+          { withCredentials: true }
+        )
+
     } else {
       await axios
         .delete(`${apiURL}/api/deleteOneFromWishlist?productId=${id}`, {
@@ -82,6 +95,7 @@ function Item({
     }
   }
   async function toggleCart() {
+
     if (isAdded) {
       sendToast("Already in cart", false);
     }
@@ -92,9 +106,23 @@ function Item({
           { productId: id, count: 1 },
           { withCredentials: true }
         )
+
         .then((res) => {
           sendToast(`${name} ${res.data}`, true);
+          setIsAdded(true)
         });
+      await axios
+        .post(
+          `${apiURL}/api/mostViewedCategories`,
+          { productId: id, route: "cart" },
+          { withCredentials: true }
+        )
+      await axios
+        .post(
+          `${apiURL}/api/mostViewedProduct`,
+          { productId: id },
+          { withCredentials: true }
+        )
 
     }
 
@@ -148,9 +176,21 @@ function Item({
         <div className="item-Bottom-container">
           <button
             className="item-view-now-btn"
-            onClick={() => {
+            onClick={async () => {
               if (show) return
               navigate("/viewproduct/" + productId);
+              await axios
+                .post(
+                  `${apiURL}/api/mostViewedCategories`,
+                  { productId: id, route: "view" },
+                  { withCredentials: true }
+                )
+              await axios
+                .post(
+                  `${apiURL}/api/mostViewedProduct`,
+                  { productId: id },
+                  { withCredentials: true }
+                )
             }}
           >
             View details
