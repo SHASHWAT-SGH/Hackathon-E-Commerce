@@ -6,13 +6,16 @@ import { apiURL } from '../../App'
 
 function CartProduct({ cart, id, name, description, price, date, location, category, quantity, brand, thumbnail }) {
 
-
-    const handleDeleteCart = () => {
-        axios
-            .delete(`${apiURL}/api/deleteOneFromCart?productId=${id}`, {
-                withCredentials: true,
-            })
+    // console.log(id)
+    async function handleDeleteCart() {
+        // console.log(`${apiURL}/api/deleteOneFromCart?productId=${id}`)
+        await axios.get(`${apiURL}/api/deleteOneFromCart?productId=${id}`, {
+            withCredentials: true,
+        })
+        // .then(res => console.log(res.data))
+        // .catch(err => console.log("not"))
     }
+
     // console.log(name)
     return (
         <div className='product-container'>
@@ -35,10 +38,14 @@ function CartProduct({ cart, id, name, description, price, date, location, categ
                 </div>
                 <div style={{ width: '30%' }}>
                     <div>
+                        Price:
                         ₹{price}
                     </div>
-                    <div>
-                        Quantity : {quantity}
+                    Quantity:
+                    <div style={{ display: 'flex', width: '70%', height: '2rem', margin: '1rem' }}>
+                        <div style={{ width: '33%', backgroundColor: 'grey', borderRadius: '2rem', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }} >-</div>
+                        <div style={{ width: '33%', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>{quantity}</div>
+                        <div style={{ width: '33%', backgroundColor: 'grey', borderRadius: '2rem', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>+</div>
                     </div>
                 </div>
             </div>

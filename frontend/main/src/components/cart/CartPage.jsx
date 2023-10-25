@@ -57,7 +57,7 @@ function CartPage() {
                 ))}
             </div>
             <div style={{ width: '35%' }}>
-                <Checkout />
+                <Checkout cartData={cartData} />
             </div>
         </div>
     )

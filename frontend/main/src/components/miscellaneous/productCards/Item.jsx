@@ -72,7 +72,6 @@ function Item({
       setSpinnerLoading(false);
     }
   }
-
   return (
     <>
       <div className="item-container">
