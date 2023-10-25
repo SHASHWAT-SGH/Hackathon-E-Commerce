@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './CartProduct.css'
 import { useEffect } from 'react'
 import axios from 'axios'
 import { apiURL } from '../../App'
 
-function CartProduct({ cart, id, name, description, price, date, location, category, quantity, brand, thumbnail }) {
+function CartProduct({ cart, id, name, description, price, date, location, category, quantity, brand, thumbnail, updateCart, setUpdateCart }) {
+
+    const [currentQuantity, setCurrentQuantity] = useState(quantity);
 
     // console.log(id)
     async function handleDeleteCart() {
@@ -16,6 +18,32 @@ function CartProduct({ cart, id, name, description, price, date, location, categ
         // .catch(err => console.log("not"))
     }
 
+
+
+    async function handleCountMinus() {
+        await axios
+            .post(
+                `${apiURL}/api/addToCart`,
+                { productId: id, count: currentQuantity - 1 },
+                { withCredentials: true }
+            ).then((r) => {
+                setCurrentQuantity(currentQuantity - 1)
+                setUpdateCart(!updateCart)
+            })
+
+    }
+    async function handleCountPlus() {
+        await axios
+            .post(
+                `${apiURL}/api/addToCart`,
+                { productId: id, count: currentQuantity + 1 },
+                { withCredentials: true }
+            ).then((r) => {
+                setCurrentQuantity(currentQuantity + 1)
+                setUpdateCart(!updateCart)
+            })
+
+    }
     // console.log(name)
     return (
         <div className='product-container'>
@@ -36,16 +64,16 @@ function CartProduct({ cart, id, name, description, price, date, location, categ
                         <div className='product-button' onClick={handleDeleteCart}>Remove X</div>
                     </div>
                 </div>
-                <div style={{ width: '30%' }}>
+                <div style={{ width: '30%', fontSize: '1.2rem' }}>
                     <div>
                         Price:
                         ₹{price}
                     </div>
                     Quantity:
                     <div style={{ display: 'flex', width: '70%', height: '2rem', margin: '1rem' }}>
-                        <div style={{ width: '33%', backgroundColor: 'grey', borderRadius: '2rem', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }} >-</div>
-                        <div style={{ width: '33%', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>{quantity}</div>
-                        <div style={{ width: '33%', backgroundColor: 'grey', borderRadius: '2rem', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>+</div>
+                        <div style={{ width: '33%', backgroundColor: 'grey', borderRadius: '2rem', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={handleCountMinus} >-</div>
+                        <div style={{ width: '33%', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>{currentQuantity}</div>
+                        <div style={{ width: '33%', backgroundColor: 'grey', borderRadius: '2rem', textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={handleCountPlus}>+</div>
                     </div>
                 </div>
             </div>
