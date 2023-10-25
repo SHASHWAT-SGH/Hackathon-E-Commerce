@@ -9,6 +9,8 @@ import {
   HomeFilled,
   HomeOutlined,
   MessageOutlined,
+  ShoppingCartOutlined,
+  ShoppingFilled,
 } from "@ant-design/icons";
 import { apiURL } from "../../App";
 import axios from "axios";
@@ -31,6 +33,7 @@ function Navbar() {
 
   const home = useMatch("/");
   const wishlist = useMatch("/wishlist");
+  const cart = useMatch("/cart");
 
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -151,7 +154,7 @@ function Navbar() {
           className={`bottom-nav-container-mob-button`}
           onClick={handleUnderDev}
         >
-          <MessageOutlined style={{ color: "#ffffff", fontSize: "1.5rem" }} />
+          <ShoppingCartOutlined style={{ color: "#ffffff", fontSize: "1.5rem" }} />
         </button>
 
         <span style={{ height: "80%", width: "25%" }}>
@@ -170,7 +173,7 @@ function Navbar() {
             fontSize: "1.5rem",
           }}
           className={`bottom-nav-container-mob-button`}
-          onClick={() => isAuth ?  navigate("/wishlist"):setLModal(true)}
+          onClick={() => isAuth ? navigate("/wishlist") : setLModal(true)}
         >
           {wishlist ? <HeartFilled /> : <HeartOutlined />}
         </button>
@@ -218,19 +221,21 @@ function Navbar() {
 
           <div
             className={`pc-center-navbar-element${wishlist ? "-selected" : ""}`}
-            onClick={() => isAuth ? navigate("/wishlist"):setLModal(true) }
+            onClick={() => isAuth ? navigate("/wishlist") : setLModal(true)}
           >
             {wishlist ? <HeartFilled style={{ color: "#ffffff", fontSize: "1.4rem" }} /> : <HeartOutlined style={{ color: "#ffffff", fontSize: "1.4rem" }} />}
             <div className="pc-navbar-icon-text">wishlist</div>
           </div>
 
-          <div className="pc-center-navbar-element" onClick={handleUnderDev}>
-            {
-              <MessageOutlined
-                style={{ color: "#ffffff", fontSize: "1.4rem" }}
+          <div className="pc-center-navbar-element" onClick={() => { navigate('/cart') }}>
+            {cart ? <ShoppingFilled
+              style={{ color: "#ffffff", fontSize: "1.8rem" }}
+            /> :
+              <ShoppingCartOutlined
+                style={{ color: "#ffffff", fontSize: "1.8rem" }}
               />
             }
-            <div className="pc-navbar-icon-text">chat</div>
+            <div className="pc-navbar-icon-text">cart</div>
           </div>
         </div>
         <div className="navbar-container-pc-right">
