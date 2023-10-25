@@ -26,9 +26,15 @@ const userschema = new Schema({
     ref: 'Product'
   }],
   mostViewed: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Product'
-  }],
+    product: {
+        type: Schema.Types.ObjectId,
+        ref: 'Product'
+    },
+    count: {
+        type: Number,
+        default: 1
+    }
+}],
   mostViewedCatogries: [String]
 });
 
