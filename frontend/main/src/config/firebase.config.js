@@ -3,13 +3,13 @@ import { getAuth } from "firebase/auth";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAHcZKWX-RVl4HYSbpkqiC-osPLis-6dd4",
-  authDomain: "retro-baazar.firebaseapp.com",
-  projectId: "retro-baazar",
-  storageBucket: "retro-baazar.appspot.com",
-  messagingSenderId: "919609431623",
-  appId: "1:919609431623:web:751e1c03854d8d4dc2c362",
-  measurementId: "G-M6DNMV79FK",
+  apiKey: "AIzaSyA0tOl0cxMoFvnrrWj8pIHOrgVGiGfdk8g",
+  authDomain: "hackathon-e-commerce-d51d9.firebaseapp.com",
+  projectId: "hackathon-e-commerce-d51d9",
+  storageBucket: "hackathon-e-commerce-d51d9.appspot.com",
+  messagingSenderId: "949071047522",
+  appId: "1:949071047522:web:178441a0ff70d1128f1a3b",
+  measurementId: "G-H5Z8K376N1",
 };
 
 // initialize firebase app
