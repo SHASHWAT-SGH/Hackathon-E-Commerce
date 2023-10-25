@@ -1,0 +1,29 @@
+.product-container {
+    display: flex;
+    width: 90%;
+    margin-bottom: 1rem;
+    /* justify-content: space-between; */
+    margin: 2rem;
+    background-color: #14131C;
+    border-radius: 2rem;
+}
+
+.product-button {
+    border: 0.1rem solid white;
+    border-radius: 1rem;
+    padding: 1rem;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.product-button:hover {
+    border: 0.1rem solid white;
+    border-radius: 1rem;
+    padding: 1rem;
+    color: white;
+    background-color: #ffffff47;
+    cursor: pointer;
+    font-weight: bold;
+}

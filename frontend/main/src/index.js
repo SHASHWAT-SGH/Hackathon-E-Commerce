@@ -13,12 +13,13 @@ import Product from "./components/product/Product";
 import UserProfile from "./components/profile/UserProfile";
 import OtpVerification from "./components/miscellaneous/otpVerification/OtpVerification";
 import NotFound from "./components/notFoundPage/NotFound";
+import CartPage from "./components/cart/CartPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement:<NotFound/>,
+    errorElement: <NotFound />,
     children: [
       {
         path: "",
@@ -45,8 +46,12 @@ const router = createBrowserRouter([
         element: <UserProfile />,
       },
       {
-        path:"/phone",
-        element:<OtpVerification/>
+        path: "/phone",
+        element: <OtpVerification />
+      },
+      {
+        path: "/cart",
+        element: <CartPage />
       }
     ],
   }
