@@ -69,7 +69,7 @@ const addToCart = async (req, res, next) => {
 const deleteOneFromCart = async (req, res, next) => {
     try {
         const cart = await Cart.findOne({ uid: req.session.passport.user.id });
-        const productId = req.body.productId; 
+        const productId = req.query.productId; 
 
         const productIndex = cart.products.findIndex(product => product.product.equals(productId));
 

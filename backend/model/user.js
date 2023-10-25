@@ -28,7 +28,8 @@ const userschema = new Schema({
   mostViewed: [{
     type: Schema.Types.ObjectId,
     ref: 'Product'
-  }]
+  }],
+  mostViewedCatogries: [String]
 });
 
 const User = mongoose.model("User", userschema);
