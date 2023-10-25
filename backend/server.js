@@ -33,7 +33,7 @@ app.use(cookieParser());
 // connection to database
 mongoose
   .connect(
-    "mongodb+srv://semanticgeeks:uovmzPhoBGJwCwWD@cluster0.vk3sidv.mongodb.net/?retryWrites=true&w=majority"
+    "mongodb+srv://mongodbPractice:QU12xqT2OLjqa5BB@cluster0.8sxvwko.mongodb.net/ecommerce?retryWrites=true&w=majority"
     // "mongodb://127.0.0.1:27017/ecommerce"
   )
   .then(() => {
