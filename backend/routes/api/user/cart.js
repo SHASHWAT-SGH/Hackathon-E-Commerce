@@ -6,7 +6,7 @@ const CartRoutes = express.Router()
 
 CartRoutes.get('/getCart', check, getCart)
     .post('/addToCart', check, addToCart)
-    .delete('/deleteOneFromCart', check, deleteOneFromCart)
+    .post('/deleteOneFromCart', check, deleteOneFromCart)
     .delete('/deleteAllFromCart', check, deleteAllFromCart)
 
 
