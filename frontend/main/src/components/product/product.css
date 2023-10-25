@@ -51,6 +51,14 @@
     gap: calc(1.2*var(--product-page-font-size));
 }
 
+.product-button{
+    border: 0.1rem solid white;
+    border-radius: 1rem;
+    padding: 1rem;
+    color:white;
+    background-color: black;
+}
+
 .product-back-btn {
     margin-top: 4px;
     color: var(--product-page-font-color-2);

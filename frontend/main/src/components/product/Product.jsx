@@ -15,6 +15,7 @@ import Lottie from "lottie-react";
 import loader from "../../assets/lottie/cart-icon-loader.json";
 import { toast } from "react-toastify";
 import LoginModal from "../miscellaneous/loginModal/LoginModal";
+import { Button } from "react-bootstrap";
 
 function Product() {
   const params = useParams();
@@ -117,6 +118,10 @@ function Product() {
                 Brand: <div>{data.brand}</div>
               </div>
             </div>
+            <div className="product-info-card" style={{ display: "flex", justifyContent: "space-between" }}>
+              <div className="product-button">Add to Cart</div>
+              <div className="product-button">Buy Now</div>
+            </div>
 
             <div className="product-info-card">
               <div className="product-seller-heading">Contact Seller</div>
@@ -162,9 +167,9 @@ function Product() {
                           <WhatsAppOutlined />
                         </a>
                       </>
-                      : 
+                      :
                       <>Login to see the details
-                        <button className="pc-center-navbar-element-selected" style={{border:'none',fontWeight:'100'}} onClick={()=>setModal(true)}><LoginOutlined style={{marginLeft:'5px'}}/> </button>
+                        <button className="pc-center-navbar-element-selected" style={{ border: 'none', fontWeight: '100' }} onClick={() => setModal(true)}><LoginOutlined style={{ marginLeft: '5px' }} /> </button>
                       </>
                     }
                   </div>
@@ -187,7 +192,7 @@ function Product() {
           </div>
         </div>
       )}
-      <LoginModal modal={modal} setModal={setModal}/>
+      <LoginModal modal={modal} setModal={setModal} />
     </>
   );
 }
