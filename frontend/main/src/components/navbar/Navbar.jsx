@@ -9,6 +9,8 @@ import {
   HomeFilled,
   HomeOutlined,
   MessageOutlined,
+  ShoppingCartOutlined,
+  ShoppingFilled,
 } from "@ant-design/icons";
 import { apiURL } from "../../App";
 import axios from "axios";
@@ -31,6 +33,7 @@ function Navbar() {
 
   const home = useMatch("/");
   const wishlist = useMatch("/wishlist");
+  const cart = useMatch("/cart");
 
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -151,7 +154,7 @@ function Navbar() {
           className={`bottom-nav-container-mob-button`}
           onClick={handleUnderDev}
         >
-          <MessageOutlined style={{ color: "#ffffff", fontSize: "1.5rem" }} />
+          <ShoppingCartOutlined style={{ color: "#ffffff", fontSize: "1.5rem" }} />
         </button>
 
         <span style={{ height: "80%", width: "25%" }}>
@@ -224,13 +227,22 @@ function Navbar() {
             <div className="pc-navbar-icon-text">wishlist</div>
           </div>
 
+<<<<<<< HEAD
           <div className="pc-center-navbar-element" onClick={() => { navigate("/cart") }}>
             {
               <MessageOutlined
                 style={{ color: "#ffffff", fontSize: "1.4rem" }}
+=======
+          <div className="pc-center-navbar-element" onClick={() => { navigate('/cart') }}>
+            {cart ? <ShoppingFilled
+              style={{ color: "#ffffff", fontSize: "1.8rem" }}
+            /> :
+              <ShoppingCartOutlined
+                style={{ color: "#ffffff", fontSize: "1.8rem" }}
+>>>>>>> 346e0045af426adf68e3e621ff43e60674de44f5
               />
             }
-            <div className="pc-navbar-icon-text">chat</div>
+            <div className="pc-navbar-icon-text">cart</div>
           </div>
         </div>
         <div className="navbar-container-pc-right">

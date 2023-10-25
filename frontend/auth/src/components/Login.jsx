@@ -34,7 +34,7 @@ export default function Login() {
         return emailRegex.test(email);
     }
 
-    const handleDataChange = (e) => {        
+    const handleDataChange = (e) => {
         setInputData(prevData => {
             return {
                 ...prevData,
@@ -53,10 +53,10 @@ export default function Login() {
             setEmailFieldColor('red')
             setInputError('Please enter a valid email')
         }
-      }, [inputData])
+    }, [inputData])
 
 
-      const handleSubmit = () => {
+    const handleSubmit = () => {
         setLoading(true)
         try {
             axios.post(`${hostUrl}/authapi/local/login`, inputData).then((res) => {
@@ -76,7 +76,7 @@ export default function Login() {
                 console.log(err)
                 toast({
                     title: err.response.data.message,
-                    description:'Try Again',
+                    description: 'Try Again',
                     status: 'error',
                     duration: 4000,
                     isClosable: true,
@@ -89,7 +89,7 @@ export default function Login() {
         } catch (error) {
             toast({
                 title: 'Wrong details, Try again',
-                description:'Try Again',
+                description: 'Try Again',
                 status: 'error',
                 duration: 4000,
                 isClosable: true,
@@ -106,7 +106,7 @@ export default function Login() {
     return (
 
         <Flex
-        className='login'
+            className='login'
             justifyContent={'center'}
             alignItems={'center'}
             w={'100%'}
@@ -131,7 +131,7 @@ export default function Login() {
 
                     <Box h={['30%', '30%', '30%', '45%', '45%']}>
                         <Text
-                        
+
                             bgGradient='linear(to-l, #7928CA, #FF0080)'
                             bgClip='text'
                             fontSize='350%'
@@ -198,10 +198,10 @@ export default function Login() {
 
                     <Flex flexDir={'column'} justifyContent={'space-evenly'} gap={'1rem'} h={'85%'}>
 
-                        <Button className='btn' borderRadius={'14px'} h={'40%'} variant='ghost' 
-                        bg={{ base: 'white',sm:'white', md: 'white', lg: 'black',xl:'black','2xl':'black' }}
-                        color={{ base: 'black',sm:'black', md: 'black', lg: 'white',xl:'white','2xl':'white' }}
-                        fontSize={'1.3rem'} fontWeight={'semibold'} _hover={{ background: 'whitesmoke',color:'black'}} _active={{ transform: ' scale(0.8)' }}
+                        <Button className='btn' borderRadius={'14px'} h={'40%'} variant='ghost'
+                            bg={{ base: 'white', sm: 'white', md: 'white', lg: 'black', xl: 'black', '2xl': 'black' }}
+                            color={{ base: 'black', sm: 'black', md: 'black', lg: 'white', xl: 'white', '2xl': 'white' }}
+                            fontSize={'1.3rem'} fontWeight={'semibold'} _hover={{ background: 'whitesmoke', color: 'black' }} _active={{ transform: ' scale(0.8)' }}
                             onClick={() => window.location.href = '/authapi/google'}
                             rightIcon={
                                 <img draggable={false} style={{ width: '2rem' }} src={googleLogo} alt="" />
