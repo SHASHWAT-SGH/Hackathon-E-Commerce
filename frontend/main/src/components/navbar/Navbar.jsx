@@ -227,7 +227,7 @@ function Navbar() {
             <div className="pc-navbar-icon-text">wishlist</div>
           </div>
 
-          <div className="pc-center-navbar-element" onClick={() => { navigate('/cart') }}>
+          <div className="pc-center-navbar-element" onClick={() => isAuth ? navigate("/cart") : setLModal(true)}>
             {cart ? <ShoppingFilled
               style={{ color: "#ffffff", fontSize: "1.8rem" }}
             /> :
