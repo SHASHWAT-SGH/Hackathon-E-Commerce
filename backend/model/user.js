@@ -21,6 +21,14 @@ const userschema = new Schema({
     unique: [true, "Email already exists"],
   },
   password: { type: String },
+  recentlyViewed: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Product'
+  }],
+  mostViewed: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Product'
+  }]
 });
 
 const User = mongoose.model("User", userschema);
