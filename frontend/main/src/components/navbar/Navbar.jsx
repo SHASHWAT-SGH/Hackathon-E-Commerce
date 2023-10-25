@@ -24,6 +24,7 @@ import logo from "../../assets/img/logo.png";
 
 function Navbar() {
   const { setProductData, isAuth, setLModal } = useContext(productsContext);
+
   const navigate = useNavigate();
 
   const [modal, setModal] = useState(false);
@@ -74,10 +75,10 @@ function Navbar() {
         })
         .catch((error) => {
           console.log(error);
-          return
+          return;
         });
     } catch (err) {
-      return
+      return;
     }
   };
   useEffect(() => {
@@ -154,13 +155,17 @@ function Navbar() {
           className={`bottom-nav-container-mob-button`}
           onClick={handleUnderDev}
         >
-          <ShoppingCartOutlined style={{ color: "#ffffff", fontSize: "1.5rem" }} />
+          <ShoppingCartOutlined
+            style={{ color: "#ffffff", fontSize: "1.5rem" }}
+          />
         </button>
 
         <span style={{ height: "80%", width: "25%" }}>
           <button
             className="sellBtn"
-            onClick={() => { isAuth ? navigate("/sell") : setLModal(true) }}
+            onClick={() => {
+              isAuth ? navigate("/sell") : setLModal(true);
+            }}
           >
             Sell
           </button>
@@ -173,28 +178,33 @@ function Navbar() {
             fontSize: "1.5rem",
           }}
           className={`bottom-nav-container-mob-button`}
-          onClick={() => isAuth ? navigate("/wishlist") : setLModal(true)}
+          onClick={() => (isAuth ? navigate("/wishlist") : setLModal(true))}
         >
           {wishlist ? <HeartFilled /> : <HeartOutlined />}
         </button>
 
-        {
-          isAuth ?
-            <span className="bottom-nav-container-mob-button">
-              <ProfileDropdown position={"top"}>
-                <img
-                  style={{ width: "2.2rem", borderRadius: "100%" }}
-                  src={`${userData
+        {isAuth ? (
+          <span className="bottom-nav-container-mob-button">
+            <ProfileDropdown position={"top"}>
+              <img
+                style={{ width: "2.2rem", borderRadius: "100%" }}
+                src={`${
+                  userData
                     ? userData
                     : `https://ui-avatars.com/api/?name=${userName}&background=e91e63&color=fff&rounded=true`
-                    }`}
-                  alt=""
-                />
-              </ProfileDropdown>
-            </span>
-            :
-            <button className="loginBtn" onClick={() => window.location.href = '/auth'}>Login</button>
-        }
+                }`}
+                alt=""
+              />
+            </ProfileDropdown>
+          </span>
+        ) : (
+          <button
+            className="loginBtn"
+            onClick={() => (window.location.href = "/auth")}
+          >
+            Login
+          </button>
+        )}
       </div>
 
       {/* pc navbar */}
@@ -215,57 +225,79 @@ function Navbar() {
             className={`pc-center-navbar-element${home ? "-selected" : ""}`}
             onClick={() => navigate("/")}
           >
-            {home ? <HomeFilled style={{ color: "white", fontSize: "1.4rem" }} /> : <HomeOutlined style={{ color: "white", fontSize: "1.4rem" }} />}
+            {home ? (
+              <HomeFilled style={{ color: "white", fontSize: "1.4rem" }} />
+            ) : (
+              <HomeOutlined style={{ color: "white", fontSize: "1.4rem" }} />
+            )}
             <div className="pc-navbar-icon-text">home</div>
           </div>
 
           <div
             className={`pc-center-navbar-element${wishlist ? "-selected" : ""}`}
-            onClick={() => isAuth ? navigate("/wishlist") : setLModal(true)}
+            onClick={() => (isAuth ? navigate("/wishlist") : setLModal(true))}
           >
-            {wishlist ? <HeartFilled style={{ color: "#ffffff", fontSize: "1.4rem" }} /> : <HeartOutlined style={{ color: "#ffffff", fontSize: "1.4rem" }} />}
+            {wishlist ? (
+              <HeartFilled style={{ color: "#ffffff", fontSize: "1.4rem" }} />
+            ) : (
+              <HeartOutlined style={{ color: "#ffffff", fontSize: "1.4rem" }} />
+            )}
             <div className="pc-navbar-icon-text">wishlist</div>
           </div>
 
-          <div className="pc-center-navbar-element" onClick={() => { navigate('/cart') }}>
-            {cart ? <ShoppingFilled
-              style={{ color: "#ffffff", fontSize: "1.8rem" }}
-            /> :
+          <div
+            className="pc-center-navbar-element"
+            onClick={() => {
+              navigate("/cart");
+            }}
+          >
+            {cart ? (
+              <ShoppingFilled
+                style={{ color: "#ffffff", fontSize: "1.8rem" }}
+              />
+            ) : (
               <ShoppingCartOutlined
                 style={{ color: "#ffffff", fontSize: "1.8rem" }}
               />
-            }
+            )}
             <div className="pc-navbar-icon-text">cart</div>
           </div>
         </div>
         <div className="navbar-container-pc-right">
           <button
             className="sellBtn"
-            onClick={() => { isAuth ? navigate("/sell") : setLModal(true) }}
+            onClick={() => {
+              isAuth ? navigate("/sell") : setLModal(true);
+            }}
           >
             Sell Now
           </button>
-          {
-            isAuth ?
-              <ProfileDropdown position={"bottom"}>
-                <img
-                  style={{
-                    height: "3rem",
-                    width: "3rem",
-                    borderRadius: "25px",
-                    border: "2px solid",
-                    transform: "scale(0.9)",
-                  }}
-                  src={`${userData
+          {isAuth ? (
+            <ProfileDropdown position={"bottom"}>
+              <img
+                style={{
+                  height: "3rem",
+                  width: "3rem",
+                  borderRadius: "25px",
+                  border: "2px solid",
+                  transform: "scale(0.9)",
+                }}
+                src={`${
+                  userData
                     ? userData
                     : `https://ui-avatars.com/api/?name=${userName}&background=e91e63&color=fff&rounded=true`
-                    }`}
-                  alt=""
-                />
-              </ProfileDropdown>
-              :
-              <button className="loginBtn" onClick={() => window.location.href = '/auth'}>Login</button>
-          }
+                }`}
+                alt=""
+              />
+            </ProfileDropdown>
+          ) : (
+            <button
+              className="loginBtn"
+              onClick={() => (window.location.href = "/auth")}
+            >
+              Login
+            </button>
+          )}
         </div>
       </div>
     </>
