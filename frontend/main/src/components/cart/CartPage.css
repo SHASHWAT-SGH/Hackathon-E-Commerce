@@ -1,0 +1,12 @@
+.skeleton-box {
+    width: calc(18*var(--item-card-font-size));
+    border-radius: 21px;
+    height: 23rem;
+    margin-bottom: 10px;
+    background-color: #1b1925;
+    position: relative;
+    overflow: hidden;
+    height: 24rem;
+    margin: 10px auto;
+    transition: .4s;
+}

@@ -227,19 +227,12 @@ function Navbar() {
             <div className="pc-navbar-icon-text">wishlist</div>
           </div>
 
-<<<<<<< HEAD
-          <div className="pc-center-navbar-element" onClick={() => { navigate("/cart") }}>
-            {
-              <MessageOutlined
-                style={{ color: "#ffffff", fontSize: "1.4rem" }}
-=======
           <div className="pc-center-navbar-element" onClick={() => { navigate('/cart') }}>
             {cart ? <ShoppingFilled
               style={{ color: "#ffffff", fontSize: "1.8rem" }}
             /> :
               <ShoppingCartOutlined
                 style={{ color: "#ffffff", fontSize: "1.8rem" }}
->>>>>>> 346e0045af426adf68e3e621ff43e60674de44f5
               />
             }
             <div className="pc-navbar-icon-text">cart</div>
