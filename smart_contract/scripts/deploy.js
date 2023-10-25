@@ -18,4 +18,6 @@ main()
     process.exit(1);
   });
 
-// 0x9627df2a09BCb55Be2134321191E41db8293D057
+// 0xf372b7A2366beD79ffE7D605E6fd0557C616F05a
+
+// npx hardhat run scripts/deploy.js --network sepolia
