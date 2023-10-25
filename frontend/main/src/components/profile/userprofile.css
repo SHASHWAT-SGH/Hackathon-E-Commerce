@@ -1,0 +1,160 @@
+:root{
+    --userprofile-font-size: 16px;
+    --user-profile-bg-color-card:#13111c;
+}
+
+.user-profile-outer-box{
+    margin-top: calc(6*var(--userprofile-font-size));
+}
+
+.user-profile-container{
+    font-size: calc(1*var(--userprofile-font-size));   
+    
+    padding: calc(2*var(--userprofile-font-size));  
+    display: flex; 
+}
+
+.user-profile-container .left{
+    /* background: red; */
+    width: 40%;
+    min-height: 80vh;
+    display: flex;
+}
+
+.user-profile-container .right{
+    width: 60%;
+    height: 80vh;
+    overflow-y: scroll;
+}
+
+.user-profile-card{
+    margin: auto;
+    background: var(--user-profile-bg-color-card);
+    border-radius: 12px;
+    width: calc(32*var(--userprofile-font-size));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: calc(3*var(--userprofile-font-size));
+    padding-top: calc(2*var(--userprofile-font-size));
+
+}
+
+.user-profile-card .profile-photo-container{
+    width: calc(10*var(--userprofile-font-size));
+    height: calc(10*var(--userprofile-font-size));
+    border-radius: 50%;
+    margin: calc(2*var(--userprofile-font-size));;
+}
+
+.user-profile-card .profile-photo-container{
+    background: #000;
+}
+
+.profile-photo-container img{
+    width: inherit;
+    height: inherit;
+    border-radius:inherit
+}
+
+.user-profile-right-container{
+    width:60%
+}
+
+.user-profile-card .user-profile-details{
+    font-size: calc(1.4*var(--userprofile-font-size));   
+    font-weight: bold;
+    width: 80%;
+    text-align: left;
+    /* margin-left: calc(5*var(--userprofile-font-size)); */
+    margin-bottom: calc(1.4*var(--userprofile-font-size));   
+}
+
+#user-profile-page-user-name{
+    margin-left: 4px;
+    background: #000;
+    border: none;
+    font-size: calc(1.4*var(--userprofile-font-size));   
+    color: #FFFFFF;
+    padding: 3px;
+    padding-left: 10px;
+    border-radius: 10px;
+    width: 60%;
+}
+
+.user-profile-card .user-profile-details span{
+    font-weight: normal;
+    margin-left: 3px;
+    
+}
+
+.user-profile-edit-btn{
+    float: right;
+
+}
+
+.user-profile-edit-btn:hover{
+    cursor: pointer;
+}
+
+.user-profile-container .right .total-products, .user-profile-outer-box .total-products{
+    font-size: calc(1.4*var(--userprofile-font-size));   
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.user-profile-container .right .total-products span , .user-profile-outer-box .total-products span{
+    font-weight: 500;
+}
+
+.user-profile-container .right .product-cards-wrapper{
+    /* display: flex;
+    flex-wrap: wrap;
+    gap: 3rem; */
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(calc(18*var(--item-card-font-size)), 1fr));
+    grid-gap: 10px;
+}
+
+
+@media (max-width: 1160px){
+    .user-profile-container{
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .user-profile-container .left{
+        width: 100%;
+        min-height: auto;
+        margin-top: 10px;
+    }
+
+    .user-profile-container .right{
+        width: 100%;
+        overflow-y: visible;
+        height: auto;
+    }
+
+}
+
+@media (max-width: 720px){
+    :root{
+        --userprofile-font-size: 13px;
+    }
+}
+
+
+@media (max-width: 460px){
+    :root{
+        --userprofile-font-size: 10px;
+    }
+
+    .user-profile-card{
+        width: 90%;
+    }
+    .user-profile-outer-box{
+        margin-top: calc(8*var(--userprofile-font-size));
+    }
+}
