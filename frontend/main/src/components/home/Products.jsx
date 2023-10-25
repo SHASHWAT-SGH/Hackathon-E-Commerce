@@ -17,6 +17,7 @@ function Products() {
   const [modal, setModal] = useState(false);
   const [wishlistData, setWishlistData] = useState();
   const [fetching, setFetching] = useState(false);
+  const [cartData, setCartData] = useState()
 
   useEffect(() => {
     axios
@@ -31,6 +32,11 @@ function Products() {
         setWishlistData(data.data.products);
         setFetching(true);
       });
+    axios
+      .get(`${apiURL}/api/getCart`, { withCredentials: true })
+      .then((data) => {
+        setCartData(data.data.products);
+      })
   }, []);
 
   const sendToast = (name, type) => {
@@ -95,6 +101,7 @@ function Products() {
                   wishlistData={wishlistData}
                   sendToast={sendToast}
                   productId={p._id}
+                  cartData={cartData}
                 />
               ))
             ) : (
