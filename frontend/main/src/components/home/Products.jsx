@@ -18,7 +18,8 @@ function Products() {
   const [fetching, setFetching] = useState(false);
   const [cartData, setCartData] = useState()
 
-  useEffect(() => {
+
+  function getData() {
     axios
       .get(`${apiURL}/api/products`, { withCredentials: true })
       .then((data) => {
@@ -36,7 +37,20 @@ function Products() {
       .then((data) => {
         setCartData(data.data.products);
       })
+  }
+
+  useEffect(() => {
+    getData()
   }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${apiURL}/api/getCart`, { withCredentials: true })
+      .then((data) => {
+        setCartData(data.data.products);
+      })
+  }, [getData]);
+
 
   const sendToast = (name, type) => {
     type

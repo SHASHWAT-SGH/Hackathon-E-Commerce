@@ -10,6 +10,9 @@ import axios from "axios";
 import LoginModal from "./components/miscellaneous/loginModal/LoginModal";
 import { useState } from "react";
 
+// Transaction provider
+import { TransactionProvider } from "./contexts/transactionContext";
+
 export const apiURL = "http://localhost:8080";
 // export const apiURL = "";
 
@@ -39,10 +42,12 @@ function App() {
 
   return (
     <>
-      <ToastContainer />
-      <LoginModal setModal={setLModal} modal={lModal} />
-      <Navbar />
-      <Outlet />
+      <TransactionProvider>
+        <ToastContainer />
+        <LoginModal setModal={setLModal} modal={lModal} />
+        <Navbar />
+        <Outlet />
+      </TransactionProvider>
     </>
   );
 }

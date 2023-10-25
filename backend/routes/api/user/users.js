@@ -12,15 +12,18 @@ const {
   deleteAllProducts,
   archiveProduct,
 } = require("../../../controller/users/userProducts");
-const { mostViewedProducts } = require("../../../controller/users/mostviewed");
+const { mostViewedProducts, mostViewedCategories } = require("../../../controller/users/mostviewed");
+const { getRecommendedProducts } = require("../../../controller/users/recommendation");
 
 const UserRoutes = express.Router();
 
-UserRoutes.get("/getUserInfo", getUserInfo)
-  .get("/getUserProducts", getUserProducts)
-  .post("/addproduct", addProduct)
-  .post("/mostViewedProduct", mostViewedProducts)
-  .put("/archiveProduct", archiveProduct)
+UserRoutes.get("/recommended", getRecommendedProducts)
+.get("/getUserInfo", getUserInfo)
+.get("/getUserProducts", getUserProducts)
+.post("/addproduct", addProduct)
+.post("/mostViewedProduct", mostViewedProducts)
+.post("/mostViewedCategories", mostViewedCategories)
+.put("/archiveProduct", archiveProduct)
   // .post("/deleteProduct", deleteProduct)
   // .delete("/deleteAllProducts", deleteAllProducts)
   .put("/changeUserName", changeUserName)
