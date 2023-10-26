@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./ProfileDropdown.css";
-import { UserOutlined, LogoutOutlined, LoadingOutlined } from "@ant-design/icons";
+import { UserOutlined, LogoutOutlined, LoadingOutlined, CodeSandboxOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { apiURL } from "../../../App";
 import { useNavigate } from "react-router-dom";
@@ -93,9 +93,16 @@ export default function ProfileDropdown({ children, position }) {
           </span>{" "}
           My profile
         </button>
+        <button onClick={() => navigate("/myorders")}>
+          <span>
+            {" "}
+            <CodeSandboxOutlined />{" "}
+          </span>{" "}
+          My orders
+        </button>
         <button onClick={signOut}>
           {loading ?
-              <LoadingOutlined />:
+            <LoadingOutlined /> :
             <>
               <span>
                 {" "}

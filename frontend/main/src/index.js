@@ -15,6 +15,7 @@ import OtpVerification from "./components/miscellaneous/otpVerification/OtpVerif
 import NotFound from "./components/notFoundPage/NotFound";
 import CartPage from "./components/cart/CartPage";
 import PaymentsPage from "./components/payments/PaymentsPage";
+import MyOrders from "./components/myOrders/MyOrders";
 
 const router = createBrowserRouter([
   {
@@ -55,9 +56,19 @@ const router = createBrowserRouter([
         element: <CartPage />,
       },
       {
+<<<<<<< HEAD
+        path: "/payments",
+        element: <PaymentsPage />
+      },
+      {
+        path: "/myorders",
+        element: <MyOrders />
+      }
+=======
         path: "/payments/:query",
         element: <PaymentsPage />,
       },
+>>>>>>> 94771e4f68f719db0df020ddcdc16152a240911c
     ],
   },
 ]);
