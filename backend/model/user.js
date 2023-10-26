@@ -36,7 +36,11 @@ const userschema = new Schema({
     }
   }],
   mostViewedCategories: [{ category: String, count: Number }],
-  metaMaskId: { type: String }
+  metaMaskId: { type: String },
+  orders: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Product'
+  }],
 });
 
 const User = mongoose.model("User", userschema);

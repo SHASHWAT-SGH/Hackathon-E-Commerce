@@ -1,11 +1,11 @@
 const express = require('express');
-const { check, orderProduct, getOrders } = require('../../../controller/users/myOrders');
+const {  orderProduct, getOrders } = require('../../../controller/users/myOrders');
 
 const OrdersRoutes = express.Router()
 
 
-OrdersRoutes.get('/getOrders', check, getOrders)
-    .post('/orderProduct', check, orderProduct)
+OrdersRoutes.get('/getOrders',  getOrders)
+    .post('/orderProduct', orderProduct)
 
 
 
