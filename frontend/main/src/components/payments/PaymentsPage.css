@@ -1,0 +1,68 @@
+.payment-inputs-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1.5rem;
+    height: 85%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.payment-inputs-container input,
+select {
+    border-radius: 13px;
+    background: #6b616970;
+    border: none;
+    outline: none;
+    height: 2.8rem;
+    padding: 1rem;
+    margin-bottom: '2rem';
+    color: white;
+}
+
+option {
+    background: #13111c;
+    color: white;
+}
+
+.payment-inputs-container input:focus,
+select:focus {
+    border: 2px solid #7d22e2;
+    background: transparent;
+}
+
+/* .payment-inputs-container input[type='radio'] {
+    display: none;
+} */
+
+.payment-inputs-container label {
+    padding: 0 1rem;
+    color: #ff4d4d;
+}
+
+.payment-submit-btn {
+    margin: 1rem 0rem 1rem 0;
+    padding: 1rem;
+    height: 8%;
+    border-radius: 8px;
+    background: linear-gradient(to left, rgb(121, 40, 202), rgb(255, 0, 128));
+    color: white;
+    border: none;
+    transition: 0.3s;
+    width: 100%;
+    margin: 1rem auto 2rem auto;
+}
+
+.payment-submit-btn:hover {
+    cursor: pointer;
+}
+
+.ethereum-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+    width: 50%;
+    height: 30%;
+    border-radius: 1.5rem;
+    padding: 1rem;
+}

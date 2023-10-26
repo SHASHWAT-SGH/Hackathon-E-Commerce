@@ -14,6 +14,7 @@ import UserProfile from "./components/profile/UserProfile";
 import OtpVerification from "./components/miscellaneous/otpVerification/OtpVerification";
 import NotFound from "./components/notFoundPage/NotFound";
 import CartPage from "./components/cart/CartPage";
+import PaymentsPage from "./components/payments/PaymentsPage";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <CartPage />
+      },
+      {
+        path: "/payments",
+        element: <PaymentsPage />
       }
     ],
   }
