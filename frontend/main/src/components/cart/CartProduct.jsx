@@ -65,12 +65,12 @@ function CartProduct({ cart, id, name, description, price, date, location, categ
             <div style={{ width: '30%' }}>
                 <img style={{ width: '100%', height: '15rem', borderTopLeftRadius: '2rem', borderBottomLeftRadius: '2rem' }} src={thumbnail} alt="" />
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', width: '70%', padding: '0.5rem' }}>
+            <div className='cart-product-item' style={{ display: 'flex', justifyContent: 'space-between', width: '70%', padding: '0.5rem' }}>
                 <div style={{ marginLeft: '1rem', width: '70%' }}>
-                    <div style={{ fontSize: 30, height: '30%', fontWeight: 'bold', margin: '0.3rem' }}>
+                    <div className='cart-product-title'>
                         {name}
                     </div>
-                    <div style={{ height: '25%', margin: '0.2rem' }}>
+                    <div className='cart-product-details'>
                         <div>Category : {category}</div>
                         <div>Posted : {date}</div>
                     </div>

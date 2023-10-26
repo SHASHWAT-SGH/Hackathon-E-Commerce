@@ -1,12 +1,11 @@
-import React, { createContext, useEffect, useState } from "react";
-import { ethers } from "ethers";
-
+import React, { createContext, useState } from "react";
 import { contractABI, contractAddress } from "../utils/constants";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { apiURL } from "../App";
+import { useNavigate } from "react-router";
+const ethers = require("ethers");
 
-export const TransactionContext = createContext();
+
+export const TransactionContext = createContext()
 
 const getEthereumContract = async () => {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -36,7 +35,7 @@ export const TransactionProvider = ({ children }) => {
       .post("", {
         withCredentials: true,
       })
-      .then(() => {});
+      .then(() => { });
   };
 
   // NOTE: the name of input fields should match the useState default value keys
