@@ -43,7 +43,6 @@ function Checkout({ cartData }) {
                 </div>
                 {
                     cartData?.map((p, index) => {
-                        // setTotalPrice(totalPrice + ())
                         return (
                             <CheckoutItems
                                 index={index}

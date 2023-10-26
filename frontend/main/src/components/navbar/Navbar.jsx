@@ -153,7 +153,7 @@ function Navbar() {
 
         <button
           className={`bottom-nav-container-mob-button`}
-          onClick={handleUnderDev}
+          onClick={() => navigate("/cart")}
         >
           <ShoppingCartOutlined
             style={{ color: "#ffffff", fontSize: "1.5rem" }}
@@ -189,8 +189,8 @@ function Navbar() {
               <img
                 style={{ width: "2.2rem", borderRadius: "100%" }}
                 src={`${userData
-                    ? userData
-                    : `https://ui-avatars.com/api/?name=${userName}&background=e91e63&color=fff&rounded=true`
+                  ? userData
+                  : `https://ui-avatars.com/api/?name=${userName}&background=e91e63&color=fff&rounded=true`
                   }`}
                 alt=""
               />
@@ -275,8 +275,8 @@ function Navbar() {
                   transform: "scale(0.9)",
                 }}
                 src={`${userData
-                    ? userData
-                    : `https://ui-avatars.com/api/?name=${userName}&background=e91e63&color=fff&rounded=true`
+                  ? userData
+                  : `https://ui-avatars.com/api/?name=${userName}&background=e91e63&color=fff&rounded=true`
                   }`}
                 alt=""
               />

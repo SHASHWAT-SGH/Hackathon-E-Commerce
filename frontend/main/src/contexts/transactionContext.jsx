@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 
 import { contractABI, contractAddress } from "../utils/constants";
 
-export const TransactionContext = createContext();
+export const TransactionContext = createContext()
 
 const getEthereumContract = () => {
   const provider = new ethers.BrowserProvider(window.ethereum);

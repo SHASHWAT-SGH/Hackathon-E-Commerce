@@ -50,8 +50,8 @@ function CartPage() {
 
 
     return (
-        <div style={{ display: 'flex', marginTop: 95 }}>
-            <div style={{ width: '65%' }}>
+        <div className='cart-page-container' >
+            <div className='cart-product-item' >
                 {cartData?.map((p) => (
                     <CartProduct
                         key={p.product._id}
@@ -70,7 +70,7 @@ function CartPage() {
                     />
                 ))}
             </div>
-            <div style={{ width: '35%' }}>
+            <div className='cart-checkout'>
                 <Checkout cartData={cartData} />
             </div>
         </div>
