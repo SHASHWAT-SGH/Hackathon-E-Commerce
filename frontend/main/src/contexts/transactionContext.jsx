@@ -4,8 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 const ethers = require("ethers");
 
-
-export const TransactionContext = createContext()
+export const TransactionContext = createContext();
 
 const getEthereumContract = async () => {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -35,7 +34,7 @@ export const TransactionProvider = ({ children }) => {
       .post("", {
         withCredentials: true,
       })
-      .then(() => { });
+      .then(() => {});
   };
 
   // NOTE: the name of input fields should match the useState default value keys

@@ -18,7 +18,8 @@ import { TransactionContext } from "../../contexts/transactionContext";
 export default function SellPage() {
   const navigate = useNavigate();
 
-  const { isMetamaskConnected } = useContext(TransactionContext);
+  const { isMetamaskConnected, currentMetaAccount } =
+    useContext(TransactionContext);
 
   const [modal, setModal] = useState(false);
   const [previewLoading, setPreviewLoading] = useState(false);
@@ -43,10 +44,20 @@ export default function SellPage() {
   const [imageUploadLoading, setImageUploadLoading] = useState(false);
   const [dataUploadLoading, setDataUploadLoading] = useState(false);
 
+  const updateMaskId = async () => {
+    await axios.put(
+      `${apiURL}/api/changeMetamaskId`,
+      {
+        id: currentMetaAccount,
+      },
+      { withCredentials: true }
+    );
+  };
+
   // getting user data for preview card
   useEffect(() => {
     isMetamaskConnected();
-
+    updateMaskId();
     axios
       .get(`${apiURL}/api/getUserInfo`, { withCredentials: true })
       .then((res) => {
