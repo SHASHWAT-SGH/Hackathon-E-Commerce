@@ -5,6 +5,8 @@
     height: 85%;
     overflow-x: hidden;
     overflow-y: auto;
+    gap: 1.5rem;
+    margin-top: 1.3rem;
 }
 
 .payment-inputs-container input,
@@ -41,8 +43,7 @@ select:focus {
 
 .payment-submit-btn {
     margin: 1rem 0rem 1rem 0;
-    padding: 1rem;
-    height: 8%;
+    height: 100%;
     border-radius: 8px;
     background: linear-gradient(to left, rgb(121, 40, 202), rgb(255, 0, 128));
     color: white;
@@ -65,4 +66,5 @@ select:focus {
     height: 30%;
     border-radius: 1.5rem;
     padding: 1rem;
+    margin-top: 1rem;
 }

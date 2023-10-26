@@ -52,12 +52,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <CartPage />
+        element: <CartPage />,
       },
       {
-        path: "/payments",
-        element: <PaymentsPage />
-      }
+        path: "/payments/:query",
+        element: <PaymentsPage />,
+      },
     ],
   },
 ]);
