@@ -14,11 +14,7 @@ const getEthereumContract = () => {
     signer
   );
 
-  console.log({
-    provider,
-    signer,
-    transactionContract,
-  });
+  return transactionContract;
 };
 
 export const TransactionProvider = ({ children }) => {
@@ -26,14 +22,17 @@ export const TransactionProvider = ({ children }) => {
 
   const [transactionFromData, setTransactionFromData] = useState({
     addressTo: "",
-    amount: "",
+    amount: 0,
     keyword: "",
     message: "",
   });
 
   // NOTE: the name of input fields should match the useState default value keys
-  const handleTransactionFormDataChange = (e, name) => {
-    setTransactionFromData((prev) => ({ ...prev, [name]: e.target.value }));
+  const handleTransactionFormDataChange = (e) => {
+    setTransactionFromData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const isMetamaskConnected = async () => {
@@ -66,14 +65,48 @@ export const TransactionProvider = ({ children }) => {
     }
   };
 
+  const sendTransaction = async () => {
+    try {
+      if (!window.ethereum) return alert("Please connect metamask");
+
+      const { addressTo, amount, keyword, message } = transactionFromData;
+      const transactionContract = getEthereumContract();
+      const parsedAmount = ethers.parseEther(amount);
+
+      await window.ethereum.request({
+        method: "eth_sendTransaction",
+        params: [
+          {
+            from: currentMetaAccount,
+            to: addressTo,
+            gas: "0x5208",
+            value: parsedAmount._hex,
+          },
+        ],
+      });
+
+      const transactionHash = await transactionContract.addToBlockChain(
+        addressTo,
+        parsedAmount,
+        message,
+        keyword
+      );
+
+      console.log(`Loading - ${transactionHash.hash}`);
+      console.log(`Success - ${transactionHash.hash}`);
+    } catch (err) {
+      console.log("add to blockchain error", err);
+    }
+  };
+
   return (
     <TransactionContext.Provider
       value={{
         connectToWallet,
         currentMetaAccount,
         transactionFromData,
-        setTransactionFromData,
         handleTransactionFormDataChange,
+        sendTransaction,
       }}
     >
       {children}
