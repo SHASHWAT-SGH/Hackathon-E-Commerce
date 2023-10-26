@@ -48,7 +48,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/phone",
-        element: <OtpVerification />
+        element: <OtpVerification />,
       },
       {
         path: "/cart",
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
         element: <PaymentsPage />
       }
     ],
-  }
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
