@@ -8,12 +8,14 @@ function Payment() {
     transactionFromData,
     handleTransactionFormDataChange,
     sendTransaction,
+    getTransaction,
   } = useContext(TransactionContext);
 
   const handleSubmit = () => {
-    const { addressTo, amount, keyword, message } = transactionFromData;
+    getTransaction();
+    // const { addressTo, amount, keyword, message } = transactionFromData;
     // console.log(transactionFromData);
-    sendTransaction();
+    // sendTransaction();
   };
 
   return (

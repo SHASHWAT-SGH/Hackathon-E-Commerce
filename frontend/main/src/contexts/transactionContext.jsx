@@ -5,15 +5,15 @@ import { contractABI, contractAddress } from "../utils/constants";
 
 export const TransactionContext = createContext();
 
-const getEthereumContract = () => {
-  const provider = new ethers.BrowserProvider(window.ethereum);
+const getEthereumContract = async () => {
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
   const transactionContract = new ethers.Contract(
     contractAddress,
     contractABI,
     signer
   );
-
+  console.log(transactionContract);
   return transactionContract;
 };
 
@@ -70,8 +70,8 @@ export const TransactionProvider = ({ children }) => {
       if (!window.ethereum) return alert("Please connect metamask");
 
       const { addressTo, amount, keyword, message } = transactionFromData;
-      const transactionContract = getEthereumContract();
-      const parsedAmount = ethers.parseEther(amount);
+      const transactionContract = await getEthereumContract();
+      const parsedAmount = ethers.utils.parseEther(amount);
 
       await window.ethereum.request({
         method: "eth_sendTransaction",
@@ -91,12 +91,20 @@ export const TransactionProvider = ({ children }) => {
         message,
         keyword
       );
-
+      const receipt = transactionHash.wait();
+      console.log("receipt", receipt);
       console.log(`Loading - ${transactionHash.hash}`);
       console.log(`Success - ${transactionHash.hash}`);
     } catch (err) {
       console.log("add to blockchain error", err);
     }
+  };
+
+  const getTransaction = async () => {
+    if (!window.ethereum) return alert("Please connect metamask");
+    const transactionContract = await getEthereumContract();
+    const transactions = await transactionContract.getAllTransactions();
+    console.log("transactions", transactions);
   };
 
   return (
@@ -107,6 +115,7 @@ export const TransactionProvider = ({ children }) => {
         transactionFromData,
         handleTransactionFormDataChange,
         sendTransaction,
+        getTransaction,
       }}
     >
       {children}
