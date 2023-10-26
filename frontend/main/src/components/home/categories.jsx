@@ -6,7 +6,7 @@ import { productsContext } from '../../contexts/productsContext';
 export default function Categories({ setFetching }) {
     const [scrollLeft, setScrollLeft] = useState(0);
     const [selected, setselected] = useState('')
-    const [selectedRecco, setselectedRecco] = useState(false)
+    const [selectedRecco, setselectedRecco] = useState(false);
 
     const { category, setCategory, setProductData, setSelectedCategory } = useContext(productsContext)
 
@@ -35,20 +35,17 @@ export default function Categories({ setFetching }) {
         await axios.get(`${apiURL}/api/recommended`, { withCredentials: true }).then((data) => {
             setProductData(data.data.products)
             // console.log(data.data.products)
-            setFetching(true)
+            setFetching(true);
         })
 
     }
-
-
-
 
     return (
         <>
             <div onWheel={handleWheelScroll} className="products-categories">
                 <div className="slider-container">
                     <div className="slider">
-                        <button className={selectedRecco ? `selected-category-buttonRecco` : `category-buttonRecco`} onClick={toggleRecco}>Recommended</button>
+                        <button className={selectedRecco ? `selected-category-buttonRecco` : `category-buttonRecco`} onClick={() => { toggleRecco() }}>Recommended</button>
 
                         <button className={selected === '' ? `selected-category-button` : `category-button`} onClick={() => toggleCategory('')}>All Products</button>
                         {
