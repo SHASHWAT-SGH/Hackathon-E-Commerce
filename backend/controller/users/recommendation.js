@@ -34,23 +34,21 @@ const { User } = require("../../model/user");
 // }
 
 async function getRecommendedProducts(req, res) {
-  const userId = req.session.passport.user.id; // Get the user's ID from the request parameters
+  const userId = req.session.passport.user.id; 
 
   try {
-    // Fetch the user by ID
     const user = await User.findById(userId);
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    // Get the user's mostViewedCategories count
     const userMostViewedCategories = user.mostViewedCategories;
 
-    // Fetch all products
+    
     const products = await Product.find();
 
-    // Sort products based on user's mostViewedCategories count
+    
     products.sort((a, b) => {
       const categoryCountA = userMostViewedCategories.find(category => category.category === a.category)?.count || 0;
       const categoryCountB = userMostViewedCategories.find(category => category.category === b.category)?.count || 0;

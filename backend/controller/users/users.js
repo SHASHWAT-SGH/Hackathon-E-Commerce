@@ -17,6 +17,21 @@ const changeUserName = async (req, res) => {
 }
 
 
+const changeMetamaskId = async (req, res) => {
+    await User.findByIdAndUpdate(req.session.passport.user.id, { metaMaskId: req.body.id }).then(async (user) => {
+        if(user.metaMaskId){
+            res.status(200).json({ result:"Id updated successfully",data: user });
+        }else{
+            const updatedUser = await User.findById(req.session.passport.user.id);
+            updatedUser.metaMaskId = req.body.id;
+            await updatedUser.save();
+
+            res.status(200).json({ result: "New Id added successfully", data: updatedUser });
+        }
+    }).catch((err) => { res.status(200).send("some error occurred while fetching the data") })
+}
+
+
 // change user name
 const addUserPhone = async (req, res) => {
     await User.findByIdAndUpdate(req.session.passport.user.id, { phoneNo: req.body.phonenumber }).then((data) => {
@@ -38,4 +53,4 @@ const signOutUser = (req, res) => {
 
 
 
-module.exports = { getUserInfo, changeUserName,signOutUser,addUserPhone }
+module.exports = { getUserInfo, changeUserName,signOutUser,addUserPhone,changeMetamaskId }
