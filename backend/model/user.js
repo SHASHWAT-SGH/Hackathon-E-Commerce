@@ -35,7 +35,7 @@ const userschema = new Schema({
         default: 1
     }
 }],
-  mostViewedCatogries: [String]
+mostViewedCategories: [{category:String,count:Number}]
 });
 
 const User = mongoose.model("User", userschema);

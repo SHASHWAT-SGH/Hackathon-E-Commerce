@@ -1,5 +1,5 @@
-:root{
-    --item-card-font-size:16px;
+:root {
+    --item-card-font-size: 16px;
 }
 
 .item-container {
@@ -40,6 +40,7 @@
     top: 10px;
     right: 10px;
 }
+
 .item-img-product-info {
     position: absolute;
     display: flex;
@@ -50,11 +51,12 @@
     justify-content: space-between;
 }
 
-.delete-icon{
+.delete-icon {
     color: grey;
     font-size: 1.3rem;
 }
-.delete-icon:hover{
+
+.delete-icon:hover {
     color: #c90000;
 }
 
@@ -133,7 +135,7 @@
 }
 
 .item-view-now-btn {
-    width: 60%;
+    width: 40%;
     border-radius: 9px;
     border: none;
     font-weight: bold;
@@ -147,14 +149,14 @@
 /* media queries */
 
 @media(max-width:1200px) {
-    :root{
-        --item-card-font-size:15px;
+    :root {
+        --item-card-font-size: 15px;
     }
 }
 
 @media(max-width:1000px) {
-    :root{
-        --item-card-font-size:14px;
+    :root {
+        --item-card-font-size: 14px;
     }
 }
 

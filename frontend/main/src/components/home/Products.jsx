@@ -13,12 +13,13 @@ import { productsContext } from "../../contexts/productsContext";
 
 function Products() {
   const { productData, setProductData } = useContext(productsContext);
-
   const [modal, setModal] = useState(false);
   const [wishlistData, setWishlistData] = useState();
   const [fetching, setFetching] = useState(false);
+  const [cartData, setCartData] = useState()
 
-  useEffect(() => {
+
+  function getData() {
     axios
       .get(`${apiURL}/api/products`, { withCredentials: true })
       .then((data) => {
@@ -31,7 +32,25 @@ function Products() {
         setWishlistData(data.data.products);
         setFetching(true);
       });
+    axios
+      .get(`${apiURL}/api/getCart`, { withCredentials: true })
+      .then((data) => {
+        setCartData(data.data.products);
+      })
+  }
+
+  useEffect(() => {
+    getData()
   }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${apiURL}/api/getCart`, { withCredentials: true })
+      .then((data) => {
+        setCartData(data.data.products);
+      })
+  }, [getData]);
+
 
   const sendToast = (name, type) => {
     type
@@ -95,6 +114,7 @@ function Products() {
                   wishlistData={wishlistData}
                   sendToast={sendToast}
                   productId={p._id}
+                  cartData={cartData}
                 />
               ))
             ) : (

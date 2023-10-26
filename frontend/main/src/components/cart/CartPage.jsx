@@ -22,6 +22,7 @@ function CartPage() {
 
     const { cartData, setCartData } = useContext(productsContext);
     const [fetching, setFetching] = useState(false)
+    const [updateCart, setUpdateCart] = useState(false);
 
 
     useEffect(() => {
@@ -34,6 +35,17 @@ function CartPage() {
             })
 
     }, [])
+
+    useEffect(() => {
+        axios
+            .get(`${apiURL}/api/getCart`, { withCredentials: true })
+            .then((data) => {
+                setCartData(data.data.products)
+                // console.log(data.data.products)
+                setFetching(true)
+            })
+
+    }, [updateCart])
 
 
 
@@ -53,11 +65,13 @@ function CartPage() {
                         quantity={p.count}
                         brand={p.product.brand}
                         thumbnail={p.product.thumbnail}
+                        updateCart={updateCart}
+                        setUpdateCart={setUpdateCart}
                     />
                 ))}
             </div>
             <div style={{ width: '35%' }}>
-                <Checkout />
+                <Checkout cartData={cartData} />
             </div>
         </div>
     )

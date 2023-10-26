@@ -14,6 +14,7 @@ import UserProfile from "./components/profile/UserProfile";
 import OtpVerification from "./components/miscellaneous/otpVerification/OtpVerification";
 import NotFound from "./components/notFoundPage/NotFound";
 import CartPage from "./components/cart/CartPage";
+import Payment from "./components/payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -47,14 +48,18 @@ const router = createBrowserRouter([
       },
       {
         path: "/phone",
-        element: <OtpVerification />
+        element: <OtpVerification />,
       },
       {
         path: "/cart",
-        element: <CartPage />
-      }
+        element: <CartPage />,
+      },
+      {
+        path: "/payment",
+        element: <Payment />,
+      },
     ],
-  }
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
