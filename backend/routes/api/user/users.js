@@ -4,6 +4,7 @@ const {
   signOutUser,
   changeUserName,
   addUserPhone,
+  changeMetamaskId,
 } = require("../../../controller/users/users");
 const {
   getUserProducts,
@@ -27,6 +28,7 @@ UserRoutes.get("/recommended", getRecommendedProducts)
   // .post("/deleteProduct", deleteProduct)
   // .delete("/deleteAllProducts", deleteAllProducts)
   .put("/changeUserName", changeUserName)
+  .put("/changeMetamaskId", changeMetamaskId)
   .put("/addUserPhone", addUserPhone)
   .get("/signOutUser", signOutUser);
 
