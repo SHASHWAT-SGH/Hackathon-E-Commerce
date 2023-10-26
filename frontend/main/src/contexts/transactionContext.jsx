@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
-import { ethers } from "ethers";
-
 import { contractABI, contractAddress } from "../utils/constants";
+const ethers = require("ethers");
+
 
 export const TransactionContext = createContext()
 

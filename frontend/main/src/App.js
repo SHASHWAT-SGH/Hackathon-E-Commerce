@@ -13,8 +13,8 @@ import { useState } from "react";
 // Transaction provider
 import { TransactionProvider } from "./contexts/transactionContext";
 
-export const apiURL = "http://localhost:8080";
-// export const apiURL = "";
+// export const apiURL = "http://localhost:8080";
+export const apiURL = "";
 
 function App() {
   const { setCategory, setIsAuth, lModal, setLModal } =
