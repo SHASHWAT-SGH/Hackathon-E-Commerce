@@ -83,9 +83,19 @@ function PaymentsPage() {
       console.log("error", err);
     }
   };
-
+  const [userInfo, setUserInfo] = useState();
+  const getUserInfo = async () => {
+    await axios
+      .get(`${apiURL}/api/getUserInfo`, { withCredentials: true })
+      .then((res) => setUserInfo(res.data.data))
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   useEffect(() => {
     isMetamaskConnected();
+    getUserInfo();
+
     getData();
     data && console.log(data);
   }, []);
