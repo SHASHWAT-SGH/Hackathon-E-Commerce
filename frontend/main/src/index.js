@@ -14,7 +14,7 @@ import UserProfile from "./components/profile/UserProfile";
 import OtpVerification from "./components/miscellaneous/otpVerification/OtpVerification";
 import NotFound from "./components/notFoundPage/NotFound";
 import CartPage from "./components/cart/CartPage";
-import Payment from "./components/payment/Payment";
+import PaymentsPage from "./components/payments/PaymentsPage";
 
 const router = createBrowserRouter([
   {
@@ -52,12 +52,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <CartPage />,
+        element: <CartPage />
       },
       {
-        path: "/payment",
-        element: <Payment />,
-      },
+        path: "/payments",
+        element: <PaymentsPage />
+      }
     ],
   },
 ]);

@@ -3,8 +3,12 @@ import './Checkout.css'
 import CheckoutItems from './CheckoutItems'
 import { useContext } from 'react';
 import { productsContext } from '../../contexts/productsContext';
+import { useNavigate } from "react-router-dom";
+
 
 function Checkout({ cartData }) {
+
+    const navigate = useNavigate();
 
     const { totalPrice, setTotalPrice } = useContext(productsContext)
     useEffect(() => {
@@ -66,7 +70,7 @@ function Checkout({ cartData }) {
                     </div>
                 </div>
                 <div className="order-button">
-                    <div>Order Now</div>
+                    <div onClick={() => navigate("/payments")}>Order Now</div>
                 </div>
             </div>
         </div>
