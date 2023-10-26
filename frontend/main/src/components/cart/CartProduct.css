@@ -16,7 +16,8 @@
     background-color: aquamarine;
     cursor: pointer;
     font-weight: bold;
-    margin: 0.5rem
+    margin: 0.5rem;
+    font-size: 1rem;
 }
 
 .product-button:hover {
@@ -54,3 +55,30 @@
     justify-content: center;
     align-items: center
 }
+
+.cart-product-title{
+    font-size: 1.7rem;
+    height: 30%;
+    font-weight: bold;
+    margin: 0.3rem 
+}
+.cart-product-details{
+    height: 25%;
+     margin: 0.2rem;
+     font-size: 1rem;
+}
+
+
+
+@media(max-width:700px) {
+    .cart-product-title{
+        font-size: 1.2rem;
+    }
+    .cart-product-details{
+         font-size: 0.7rem;
+    }
+    .product-button {
+
+        font-size: 0.7rem;
+    }
+  }

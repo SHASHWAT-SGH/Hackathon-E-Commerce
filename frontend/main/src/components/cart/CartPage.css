@@ -10,3 +10,42 @@
     margin: 10px auto;
     transition: .4s;
 }
+
+.cart-page-container{
+    margin-top:5%;
+    display: flex;
+}
+
+.cart-product-item{
+    width: 60%;
+}
+
+.cart-checkout{
+    width: 40%;
+}
+
+@media(max-width:1150px) {
+    .cart-page-container{
+        display: block;
+    }
+    .cart-product-item {
+      width: 100%;
+    }
+  
+    .cart-checkout{
+        width: 100%;
+    }
+  }
+
+  @media(max-width:700px) {
+    .cart-page-container{
+        display: block;
+    }
+    .cart-product-item {
+      width: 100%;
+    }
+  
+    .cart-checkout{
+        width: 100%;
+    }
+  }

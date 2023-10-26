@@ -1,7 +1,8 @@
-import React, { createContext, useEffect, useState } from "react";
-import { ethers } from "ethers";
-
+import React, { createContext, useState } from "react";
 import { contractABI, contractAddress } from "../utils/constants";
+import axios from "axios";
+import { useNavigate } from "react-router";
+const ethers = require("ethers");
 
 export const TransactionContext = createContext();
 
@@ -18,14 +19,23 @@ const getEthereumContract = async () => {
 };
 
 export const TransactionProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [currentMetaAccount, setCurrentMetaAccount] = useState();
 
   const [transactionFromData, setTransactionFromData] = useState({
-    addressTo: "",
+    addressTo: "0x51de4F98E592748C9b80ea728Ce0e456934acE74",
     amount: 0,
     keyword: "",
     message: "",
   });
+
+  const setMetaIdToDb = async () => {
+    await axios
+      .post("", {
+        withCredentials: true,
+      })
+      .then(() => {});
+  };
 
   // NOTE: the name of input fields should match the useState default value keys
   const handleTransactionFormDataChange = (e) => {
@@ -36,7 +46,10 @@ export const TransactionProvider = ({ children }) => {
   };
 
   const isMetamaskConnected = async () => {
-    if (!window.ethereum) return alert("Please connect metamask");
+    if (!window.ethereum) {
+      alert("Please connect metamask");
+      navigate("/");
+    }
     const connectedMetaAccounts = await window.ethereum.request({
       method: "eth_accounts",
     });
@@ -44,13 +57,10 @@ export const TransactionProvider = ({ children }) => {
     if (connectedMetaAccounts.length) {
       setCurrentMetaAccount(connectedMetaAccounts[0]);
     } else {
-      console.log("no meta account connected");
+      alert("Please connect metamask");
+      navigate("/");
     }
   };
-
-  useEffect(() => {
-    isMetamaskConnected();
-  }, []);
 
   const connectToWallet = async () => {
     try {
@@ -71,7 +81,7 @@ export const TransactionProvider = ({ children }) => {
 
       const { addressTo, amount, keyword, message } = transactionFromData;
       const transactionContract = await getEthereumContract();
-      const parsedAmount = ethers.utils.parseEther(amount);
+      const parsedAmount = ethers.utils.parseEther(amount.toString());
 
       await window.ethereum.request({
         method: "eth_sendTransaction",
@@ -95,6 +105,8 @@ export const TransactionProvider = ({ children }) => {
       console.log("receipt", receipt);
       console.log(`Loading - ${transactionHash.hash}`);
       console.log(`Success - ${transactionHash.hash}`);
+      alert("Purchase Successfull!");
+      navigate("/");
     } catch (err) {
       console.log("add to blockchain error", err);
     }
@@ -116,6 +128,8 @@ export const TransactionProvider = ({ children }) => {
         handleTransactionFormDataChange,
         sendTransaction,
         getTransaction,
+        isMetamaskConnected,
+        setTransactionFromData,
       }}
     >
       {children}

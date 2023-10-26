@@ -22,15 +22,15 @@ passport.deserializeUser(function (user, cb) {
 passport.use(
     new GoogleStrategy(
         {
-            clientID: "666453716775-6ucd83q73809j34tm7ehc3ssoon4jsu7.apps.googleusercontent.com",
-            clientSecret: "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",
+            clientID: "374784608996-vha6hkiop5otismhkbroio45603n3cbg.apps.googleusercontent.com",
+            clientSecret: "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",
             // callbackURL: "http://localhost:8080/authapi/google/callback"
-            callbackURL: "https://retro-bazaar.onrender.com/authapi/google/callback"
+            callbackURL: "https://semanticgeeks-ecommerce.onrender.com/authapi/google/callback"
         },
         async (accessToken, refreshToken, profile, done) => {
             await User.findOne({ email: profile.emails[0].value }).then((user) => {
                 if (!user.provider) {
-                    
+
                     return done(null, false, {
                         message: 'User already exists with a different provider.'
                     });
@@ -63,7 +63,7 @@ router.get(
 
 router.get(
     '/callback',
-    passport.authenticate('google', { failureRedirect: '/auth/', successRedirect: '/',failureMessage:true })
+    passport.authenticate('google', { failureRedirect: '/auth/', successRedirect: '/', failureMessage: true })
 );
 
 

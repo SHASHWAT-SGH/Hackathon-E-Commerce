@@ -21,8 +21,10 @@ function Product() {
   const params = useParams();
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(false);
   const navigate = useNavigate();
+
+  const productId = params.query;
 
   useEffect(() => {
     getData();
@@ -41,7 +43,7 @@ function Product() {
         progress: undefined,
         theme: "dark",
       });
-    } catch { }
+    } catch {}
   };
 
   const getData = async () => {
@@ -106,11 +108,20 @@ function Product() {
               <div className="product-title">{data.title}</div>
               <div className="product-description">{data.description}</div>
             </div>
-            <div className="product-info-card" style={{ display: "flex", justifyContent: "space-between" }}>
-              <div className="product-title"><span style={{ fontWeight: "100" }}>Quantity</span> {data.quantity}</div>
+            <div
+              className="product-info-card"
+              style={{ display: "flex", justifyContent: "space-between" }}
+            >
+              <div className="product-title">
+                <span style={{ fontWeight: "100" }}>Quantity</span>{" "}
+                {data.quantity}
+              </div>
               <div className="product-title">₹{data.price}</div>
             </div>
-            <div className="product-info-card" style={{ display: "flex", justifyContent: "space-between" }}>
+            <div
+              className="product-info-card"
+              style={{ display: "flex", justifyContent: "space-between" }}
+            >
               <div className="product-upload-date">
                 On sale from: <div>{data.date.split("T")[0]}</div>
               </div>
@@ -118,9 +129,23 @@ function Product() {
                 Brand: <div>{data.brand}</div>
               </div>
             </div>
-            <div className="product-buy-buttons" style={{ display: "flex", justifyContent: "space-between", width: '80%' }}>
+            <div
+              className="product-buy-buttons"
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                width: "80%",
+              }}
+            >
               <div className="product-button">Add to Cart</div>
-              <div className="product-button">Buy Now</div>
+              <div
+                className="product-button"
+                onClick={() => {
+                  navigate("/payments/" + productId);
+                }}
+              >
+                Buy Now
+              </div>
             </div>
 
             <div className="product-info-card">
@@ -132,7 +157,7 @@ function Product() {
                     <span className="product-owner">{data.postedBy.name}</span>
                   </div>
                   <div className="product-owner-contact-wrapper">
-                    {data.postedBy.phoneNo ?
+                    {data.postedBy.phoneNo ? (
                       <>
                         <a
                           onClick={() => {
@@ -167,11 +192,18 @@ function Product() {
                           <WhatsAppOutlined />
                         </a>
                       </>
-                      :
-                      <>Login to see the details
-                        <button className="pc-center-navbar-element-selected" style={{ border: 'none', fontWeight: '100' }} onClick={() => setModal(true)}><LoginOutlined style={{ marginLeft: '5px' }} /> </button>
+                    ) : (
+                      <>
+                        Login to see the details
+                        <button
+                          className="pc-center-navbar-element-selected"
+                          style={{ border: "none", fontWeight: "100" }}
+                          onClick={() => setModal(true)}
+                        >
+                          <LoginOutlined style={{ marginLeft: "5px" }} />{" "}
+                        </button>
                       </>
-                    }
+                    )}
                   </div>
                 </div>
 
